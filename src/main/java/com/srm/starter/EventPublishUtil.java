@@ -3,7 +3,9 @@ package com.srm.starter;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 
-
+/**
+ * @author haoran
+ */
 public class EventPublishUtil implements ApplicationEventPublisherAware {
 
     private ApplicationEventPublisher applicationEventPublisher;

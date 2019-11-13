@@ -12,6 +12,9 @@ import org.springframework.context.ApplicationListener;
 import java.util.*;
 import java.util.concurrent.ThreadPoolExecutor;
 
+/**
+ * @author haoran
+ */
 public class BaseListener implements ApplicationListener<BaseEvent> , ApplicationContextAware {
 
     Logger logger = LoggerFactory.getLogger(BaseListener.class);

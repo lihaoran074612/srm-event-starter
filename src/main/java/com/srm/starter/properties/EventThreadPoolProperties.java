@@ -4,6 +4,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author haoran
+ */
 @ConfigurationProperties(prefix = "event.threadpoll")
 public class EventThreadPoolProperties {
 

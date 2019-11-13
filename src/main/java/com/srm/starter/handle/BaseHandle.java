@@ -1,5 +1,8 @@
 package com.srm.starter.handle;
 
+/**
+ * @author haoran
+ */
 public interface BaseHandle {
 
     /**

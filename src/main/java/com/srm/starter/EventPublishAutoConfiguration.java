@@ -11,6 +11,9 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author haoran
+ */
 @Configuration
 @ConditionalOnWebApplication
 @EnableConfigurationProperties(EventThreadPoolProperties.class)

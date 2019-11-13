@@ -2,6 +2,9 @@ package com.srm.starter;
 
 import org.springframework.context.ApplicationEvent;
 
+/**
+ * @author haoran
+ */
 public  class BaseEvent extends ApplicationEvent {
 
     protected String eventData;
