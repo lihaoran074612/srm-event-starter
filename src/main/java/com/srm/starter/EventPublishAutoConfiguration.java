@@ -22,20 +22,32 @@ public class EventPublishAutoConfiguration {
     @Autowired
     EventThreadPoolProperties eventThreadPoolProperties;
 
+    /**
+     * 基础事件发布类
+     * @return
+     */
     @Bean
     public EventPublishUtil eventPublishUtil(){
         return new EventPublishUtil();
     }
 
+    /**
+     * 基础事件监听类
+     * @return
+     */
     @Bean
     public BaseListener baseListener(){
         return new BaseListener(eventThreadPoolExecutor());
     }
 
+    /**
+     * 事件执行的线程池
+     * @return
+     */
     @Bean
     public ThreadPoolExecutor eventThreadPoolExecutor(){
-
-        return new ThreadPoolExecutor(eventThreadPoolProperties.getCorePoolSize(),
+        return new ThreadPoolExecutor
+                (eventThreadPoolProperties.getCorePoolSize(),
                 eventThreadPoolProperties.getMaximumPoolSize(),
                 eventThreadPoolProperties.getKeepAliveTime(),
                 TimeUnit.SECONDS,
