@@ -7,22 +7,18 @@ import org.springframework.context.ApplicationEvent;
  */
 public  class BaseEvent extends ApplicationEvent {
 
-    protected String eventData;
+    protected String taskCode;
 
-    public BaseEvent(Object source, String eventData){
+    public BaseEvent(Object source, String taskCode){
         super(source);
-        this.eventData = eventData;
+        this.taskCode = taskCode;
     }
 
-    public BaseEvent(String eventData){
-        super(eventData);
+    public String getTaskCode() {
+        return taskCode;
     }
 
-    public String getEventData() {
-        return eventData;
+    public void setTaskCode(String taskCode) {
+        this.taskCode = taskCode;
     }
-    public void setEventData(String eventData) {
-        this.eventData = eventData;
-    }
-
 }
