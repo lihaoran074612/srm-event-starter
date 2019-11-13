@@ -13,7 +13,9 @@ public class EventPublishUtil implements ApplicationEventPublisherAware {
         this.applicationEventPublisher = applicationEventPublisher;
     }
 
-    public void publishEvent(BaseEvent baseEvent){
+    public void publishEvent(String eventCode,Object obj){
+        BaseEvent baseEvent = new BaseEvent(eventCode);
+        baseEvent.setEventData(obj.toString());
         applicationEventPublisher.publishEvent(baseEvent);
     }
 

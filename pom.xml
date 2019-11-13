@@ -8,6 +8,7 @@
 		<version>2.2.1.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>com.atguigu.starter</groupId>
 	<artifactId>event-spring-boot-starter-autoconfigure</artifactId>
 	<version>0.0.2-SNAPSHOT</version>

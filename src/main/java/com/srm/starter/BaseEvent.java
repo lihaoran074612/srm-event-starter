@@ -2,23 +2,23 @@ package com.srm.starter;
 
 import org.springframework.context.ApplicationEvent;
 
-public  class BaseEvent<T> extends ApplicationEvent {
+public  class BaseEvent extends ApplicationEvent {
 
-    protected T eventData;
+    protected String eventData;
 
-    public BaseEvent(Object source, T eventData){
+    public BaseEvent(Object source, String eventData){
         super(source);
         this.eventData = eventData;
     }
 
-    public BaseEvent(T eventData){
+    public BaseEvent(String eventData){
         super(eventData);
     }
 
-    public T getEventData() {
+    public String getEventData() {
         return eventData;
     }
-    public void setEventData(T eventData) {
+    public void setEventData(String eventData) {
         this.eventData = eventData;
     }
 

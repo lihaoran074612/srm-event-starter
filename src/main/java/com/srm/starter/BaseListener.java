@@ -9,12 +9,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationListener;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 public class BaseListener implements ApplicationListener<BaseEvent> , ApplicationContextAware {
 
@@ -22,10 +18,14 @@ public class BaseListener implements ApplicationListener<BaseEvent> , Applicatio
 
     private ApplicationContext applicationContext;
 
+    private ThreadPoolExecutor executor;
+
     /**
-     * 线程池； 核心线程数5 最大10 队列10 空闲时间30s
+     * 线程池； 默认核心线程数5 最大10 队列10 空闲时间30s
      */
-    ThreadPoolExecutor executor = new ThreadPoolExecutor(5,10,30, TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(10));
+    public BaseListener(ThreadPoolExecutor threadPoolExecutor){
+        this.executor = threadPoolExecutor;
+    }
 
     /**
      * 监听器执行
@@ -65,19 +65,7 @@ public class BaseListener implements ApplicationListener<BaseEvent> , Applicatio
             @Override
             public void run() {
                 baseHandleSort.stream().forEach(baseHandle -> {
-                    Method[] methods = baseHandle.getClass().getDeclaredMethods();
-                    Arrays.stream(methods).forEach(method->{
-                        try {
-                            Thread.sleep(2000);
-                            method.invoke(baseHandle);
-                        } catch (IllegalAccessException e) {
-                            e.printStackTrace();
-                        } catch (InvocationTargetException e) {
-                            e.printStackTrace();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    });
+                    baseHandle.handle();
                 });
             }
         };
