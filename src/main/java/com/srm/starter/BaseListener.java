@@ -23,7 +23,7 @@ public class BaseListener implements ApplicationListener<BaseEvent> , Applicatio
     private ApplicationContext applicationContext;
 
     /**
-     * 线程池； 默认5 最大10
+     * 线程池； 核心线程数5 最大10 队列10 空闲时间30s
      */
     ThreadPoolExecutor executor = new ThreadPoolExecutor(5,10,30, TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(10));
 
