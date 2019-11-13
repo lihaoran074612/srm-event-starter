@@ -42,7 +42,7 @@ public class BaseListener implements ApplicationListener<BaseEvent> , Applicatio
         String[] beanNamesForType = applicationContext.getBeanNamesForType(BaseHandle.class);
 
         //根据事件发布的编码，获取对应事件的处理方法
-        // eventCode--> Event1Handle --> List<> evet1Handle
+        // eventCode--> EvenHandlte --> List<>
         List<BaseHandle> baseHandles = new ArrayList<>();
         for (String s: beanNamesForType) {
             BaseHandle bean = applicationContext.getBean(s, BaseHandle.class);
