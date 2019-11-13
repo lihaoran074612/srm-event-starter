@@ -14,5 +14,5 @@ import java.lang.annotation.*;
 public @interface EventHandle {
 
     int order();
-    String TaskCode();
+    String taskCode();
 }

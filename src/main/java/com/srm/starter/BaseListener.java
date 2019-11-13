@@ -33,7 +33,9 @@ public class BaseListener implements ApplicationListener<BaseEvent> , Applicatio
      */
     @Override
     public void onApplicationEvent(BaseEvent baseEvent) {
+
         String TaskCode = (String)baseEvent.getSource();
+        String eventData = baseEvent.getEventData();
         String[] beanNamesForType = applicationContext.getBeanNamesForType(BaseHandle.class);
 
         //根据事件发布的编码，获取对应事件的处理方法
@@ -42,7 +44,7 @@ public class BaseListener implements ApplicationListener<BaseEvent> , Applicatio
         for (String s: beanNamesForType) {
             BaseHandle bean = applicationContext.getBean(s, BaseHandle.class);
             EventHandle annotation = bean.getClass().getAnnotation(EventHandle.class);
-            String code = annotation.TaskCode();
+            String code = annotation.taskCode();
             if (code != null && code.equals(TaskCode)){
                 baseHandles.add(bean);
             }
@@ -50,7 +52,7 @@ public class BaseListener implements ApplicationListener<BaseEvent> , Applicatio
 
         //事件的处理器执行(根据order排序)
         Queue<BaseHandle> baseHandleSort = sortBaseHandle(baseHandles);
-        execute(baseHandleSort);
+        execute(baseHandleSort,eventData);
         //不受事件处理影响，直接往下执行（异步处理）
         logger.info("登录成功，当前线程:"+Thread.currentThread().getName()+"  监听到了事件 IP地址为: "+"localhost:");
     }
@@ -60,12 +62,17 @@ public class BaseListener implements ApplicationListener<BaseEvent> , Applicatio
      * @param baseHandleSort
      * @param
      */
-    public void execute(Queue<BaseHandle> baseHandleSort){
+    public void execute(Queue<BaseHandle> baseHandleSort ,String obj){
        Runnable runnable= new Runnable(){
             @Override
             public void run() {
                 baseHandleSort.stream().forEach(baseHandle -> {
-                    baseHandle.handle();
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    baseHandle.handle(obj);
                 });
             }
         };
