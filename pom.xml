@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>com.atguigu.starter</groupId>
-	<artifactId>event-spring-boot-starter-autoconfigure</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<groupId>com.srm.starter</groupId>
+	<artifactId>event-starter-autoconfigure</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>atguigu-spring-boot-starter-autoconfigure</name>
 	<description>Demo project for Spring Boot</description>
 
